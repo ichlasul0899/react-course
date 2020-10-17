@@ -3,3 +3,8 @@ export { default as Profile } from './profile';
 export { default as Contact } from './contact';
 export { default as Login } from './login';
 export { default as ProfileId } from './profileId';
+export { default as HomePage } from './HomePage';
+export { default as AboutPage } from './AboutPage';
+export { default as ContactPage } from './ContactPage';
+export { default as PortfolioPage } from './PortfolioPage';
+export { default as DetailPortfolioPage } from './DetailPortfolioPage';

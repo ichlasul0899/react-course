@@ -2,8 +2,8 @@
 import React from 'react';
 import './App.css';
 import { Route, Switch, BrowserRouter, Redirect } from 'react-router-dom';
-import Header from './header';
 import routes from './config/routes';
+import Navbar from './component/Navbar';
 
 const isUserAuthenticated = false;
 
@@ -24,7 +24,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
 const App = () => {
   return (
     <BrowserRouter>
-      <Header />
+      <Navbar />
       <Switch>
         {routes.map((route) => {
           if (route.isPublic) {
