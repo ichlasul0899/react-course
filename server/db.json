@@ -1,0 +1,25 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "srcImage": "../assets/images/gambar1.png",
+      "title": "Mobile UI MedicTF",
+      "desc":
+        "I am a very simple card. I am good at containing small bits of information. "
+    },
+    {
+      "id": 2,
+      "srcImage": "../assets/images/gambar2.png",
+      "title": "Mobile UI MedicTF",
+      "desc":
+        "I am a very simple card. I am good at containing small bits of information. "
+    },
+    {
+      "id": 3,
+      "srcImage": "../assets/images/gambar3.png",
+      "title": "Mobile UI MedicTF",
+      "desc":
+        "I am a very simple card. I am good at containing small bits of information. "
+    }
+  ]
+}
