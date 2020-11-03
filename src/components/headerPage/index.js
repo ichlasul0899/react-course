@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const HeaderPage = () => {
+const Header = () => {
   const listMenu = ['home', 'profile', 'contact', 'infoCorona'];
   return (
     <div className="header">
@@ -15,4 +15,4 @@ const HeaderPage = () => {
     </div>
   );
 };
-export default HeaderPage;
+export default Header;

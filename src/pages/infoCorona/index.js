@@ -1,11 +1,11 @@
 import React from 'react';
-import { Corona } from '../../components';
+import { CoronaNews } from '../../components';
 
 const InfoCorona = () => {
   return (
-    <div>
-      <h1>info Corona</h1>
-      <Corona />
+    <div className="pageInfoCorona-wrapper">
+      <h1>Info Corona</h1>
+      <CoronaNews />
     </div>
   );
 };

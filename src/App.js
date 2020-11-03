@@ -2,7 +2,7 @@
 import React from 'react';
 import './App.css';
 import { Route, Switch, BrowserRouter, Redirect } from 'react-router-dom';
-import HeaderPage from './components/headerPage';
+import { HeaderPage } from './components';
 import routes from './config/routes';
 
 const isUserAuthenticated = true;
