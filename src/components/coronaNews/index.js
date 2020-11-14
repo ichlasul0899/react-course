@@ -7,14 +7,17 @@ import { News } from '../index';
 
 const CoronaNews = () => {
   const [isLoading, setIsLoading] = useState(false);
+
   const [offset, setOffset] = useState(0);
-  // const [perPage, setPerPage] = useState(10);
   const perPage = 10;
   const [pageCount, setPageCount] = useState();
   const [currentPage, setCurrentPage] = useState();
   const [postData, setPostData] = useState([]);
-
-  const renderedData = postData && postData.map((pd) => { return <News data={pd} />; });
+  const renderedData =
+    postData &&
+    postData.map((pd) => {
+      return <News data={pd} />;
+    });
 
   useEffect(() => {
     const receivedData = () => {
