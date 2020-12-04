@@ -35,7 +35,7 @@ const routes = [
     isPublic: true,
   },
   {
-    path: '/infoCorona/:dateID',
+    path: '/infoCorona/:dateId',
     component: DetailDate,
     isPublic: true,
   },

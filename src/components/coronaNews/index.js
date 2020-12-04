@@ -1,71 +1,57 @@
 import React, { useEffect, useState } from 'react';
-import ReactPaginate from 'react-paginate';
+import { Link } from 'react-router-dom';
 import app from '../../services/firebase';
 import 'firebase/database';
-import './style.css';
-import { News } from '../index';
 
-const CoronaNews = () => {
-  const [isLoading, setIsLoading] = useState(false);
+const Activity = (props) => {
+  const { data } = props;
+  return (
+    <div>
+      {/* <a href={data.url}> */}
+      <h4>{data.title}</h4>
+      {/* </a> */}
+      <p>{data.desc}</p>
+    </div>
+  );
+};
 
-  const [offset, setOffset] = useState(0);
-  const perPage = 10;
-  const [pageCount, setPageCount] = useState();
-  const [currentPage, setCurrentPage] = useState();
-  const [postData, setPostData] = useState([]);
-  const renderedData =
-    postData &&
-    postData.map((pd) => {
-      return <News data={pd} />;
-    });
-
-  useEffect(() => {
-    const receivedData = () => {
-      setIsLoading(true);
-      const db = app.database().ref('news');
-      db.on('value', (snapshot) => {
-        const { data } = snapshot.val();
-        const slice = data.slice(offset, offset + perPage);
-        setPostData(slice);
-        setPageCount(Math.ceil(data.length / perPage));
-        setIsLoading(false);
-      });
-    };
-    receivedData();
-  }, [offset]);
-
-  async function handlePageClick(e) {
-    const selectedPage = e.selected;
-    const newOffset = selectedPage * perPage;
-
-    setCurrentPage(selectedPage);
-    setOffset(newOffset);
-  }
+const NewsPerDate = (props) => {
+  const { data } = props;
 
   return (
     <div>
-      <ReactPaginate
-        previousLabel="Prev"
-        nextLabel="Next"
-        breakLabel="..."
-        breakClassName="break-me"
-        pageCount={pageCount}
-        marginPagesDisplayed={2}
-        pageRangeDisplayed={5}
-        onPageChange={handlePageClick}
-        containerClassName="pagination"
-        subContainerClassName="pages pagination"
-        activeClassName="active"
-      />
+      <Link to={`/infoCorona/${data.date}`}>
+        <h3>{data.date}</h3>
+      </Link>
+      {data.activity.map((news) => {
+        return <Activity key={news.url} data={news} />;
+      })}
+    </div>
+  );
+};
+
+const CoronaNews = () => {
+  const [news, setNews] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    setIsLoading(true);
+    const db = app.database().ref('news');
+    db.on('value', (snapshot) => {
+      const firebaseNews = snapshot.val();
+      setNews(firebaseNews.data);
+      setIsLoading(false);
+    });
+  }, []);
+
+  return (
+    <div className="center_view">
       {isLoading ? (
-        <div className="spinner-border text-success" role="status">
-          <span className="sr-only">
-            Loading...
-            {currentPage}
-          </span>
-        </div>
+        <p>loading</p>
       ) : (
-        renderedData
+        news.map((newsPerDate) => {
+          return <NewsPerDate key={newsPerDate.date} data={newsPerDate} />;
+        })
       )}
     </div>
   );
