@@ -56,3 +56,8 @@
 .pagination > li:last-child > span {
   border-radius: unset;
 }
+
+.login_form {
+  display: flex;
+  flex-direction: column;
+}
