@@ -2,20 +2,22 @@ import axios from 'axios';
 import { getCookie } from '../utils/cookie';
 
 function getTokenAuth() {
-  if (getCookie('token') && getCookie('userData')) {
-    return JSON.parse(getCookie('token')).value;
+  if (getCookie('token') !== '' && getCookie('userData') !== '') {
+    return JSON.parse(getCookie('token'));
   }
   return '';
 }
 
 const createAxiosInterceptor = (url) => {
+  const Authorization = `Bearer ${getTokenAuth()}`;
+
   const axiosCreate = axios.create({
     baseURL: url,
     headers: {
       Accept: 'application/json',
       'Accept-Language': 'es',
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${getTokenAuth()}`,
+      Authorization,
     },
   });
   axiosCreate.interceptors.response.use(
@@ -23,6 +25,7 @@ const createAxiosInterceptor = (url) => {
       return response.data;
     },
     (error) => {
+      console.log('Haik cath', Authorization);
       if (error.response.status === 401) {
         window.location.replace('/');
       }

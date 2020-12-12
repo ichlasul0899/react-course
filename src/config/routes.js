@@ -6,9 +6,21 @@ import {
   ProfileId,
   InfoCorona,
   DetailDate,
+  Product,
+  DetailProduct,
 } from '../pages';
 
 const routes = [
+  {
+    path: '/product/:id',
+    component: DetailProduct,
+    isPublic: false,
+  },
+  {
+    path: '/product',
+    component: Product,
+    isPublic: false,
+  },
   {
     path: '/profile/:profileId',
     component: ProfileId,
